@@ -30,7 +30,7 @@ class MyService extends Service{
 
     let info = await ctx.helper.decodeToken({ctx,token});
 
-    console.log(info,'新信息小女子下走下周弄')
+    console.log(info,'新信息下走下周弄')
     const userId = info.data._id;
     return await ctx.model.User.findById(userId);
   }

@@ -29,8 +29,20 @@ class OrderController extends  Controller{
     let token = ctx.request.get('Authorization');
     const res = await service.order.getOrder({token,orderStatus});
 
-    console.info(res,'请求的数据')
+   
     ctx.helper.success({ctx,res})
+  }
+  //删除订单
+  async deleteOrder(){
+    const {ctx,service} = this;
+    const {_id} = ctx.request.body;
+    const res = await service.order.deleteOrder({_id});
+    if(res){
+      ctx.helper.success({ctx,res});
+    }else{
+      ctx.throw('删除失败')
+    }
+    
   }
 }
 module.exports = OrderController;

@@ -16,7 +16,7 @@ class OrderService extends Service{
     payload.orderId = orderId+len;//模拟自增id
     payload.userId = userId;//用户id
     console.log(payload,'组织');
-    return ctx.model.Order.create(payload);
+    return await ctx.model.Order.create(payload);
   }
   //查询文档数量
   async getOrderCount(){
@@ -39,7 +39,21 @@ class OrderService extends Service{
     const userId = info.data._id;
 
     console.info(token,orderStatus,info,'产讯大点的');
-    return ctx.model.Order.find({userId:userId});
+    return await ctx.model.Order.find({userId:userId});
+  }
+  //删除 订单
+  async deleteOrder(payload){
+    const {ctx,service} = this;
+    const {_id} = payload;//订单id
+    let res = false;
+    await ctx.model.Order.deleteOne({_id},(error,result)=>{
+      if(error){
+        res = false;
+      }else{
+        res = result;
+      }
+    }) 
+    return res;
   }
 }
 

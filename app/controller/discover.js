@@ -9,7 +9,7 @@ class DiscoverController extends Controller {
   }
 
 
-  //查询首页推荐商品
+  //查询季节图片banner
   async getSeasonPic(payload){
     const {ctx,service} = this;
 
