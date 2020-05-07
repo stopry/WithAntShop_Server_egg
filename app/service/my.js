@@ -17,7 +17,7 @@ class MyService extends Service{
       ctx.throw(200,'用户名或密码错误');
     }
 
-    const token = await service.actionToken.applay(user._id);
+    const token = await service.actionToken.applay(user._id,user.get('userName'));
 
     //生成Token
     return {token};
@@ -30,7 +30,7 @@ class MyService extends Service{
 
     let info = await ctx.helper.decodeToken({ctx,token});
 
-    console.log(info,'新信息下走下周弄')
+    // console.log(info,'新信息下走下周弄')
     const userId = info.data._id;
     return await ctx.model.User.findById(userId);
   }

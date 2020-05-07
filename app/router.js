@@ -12,4 +12,6 @@ module.exports = app => {
   require('./router/my')(app);
   require('./router/discover')(app);
   require('./router/order/order')(app);
+  require('./router/admin/orderManger')(app);
+  require('./router/admin/login')(app);
 };

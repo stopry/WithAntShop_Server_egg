@@ -7,14 +7,17 @@ class OrderService extends Service{
   //存入订单数据
   async createOrder(payload,token){
     const {ctx,service} = this;
-    const len = await this.getOrderCount();
+    const orderLen = await this.getOrderCount();
 
     const userId = await ctx.helper.decodeToken({ctx,token}).data._id;
+    const userName = await ctx.helper.decodeToken({ctx,token}).data.userName;
 
-    let orderId = new Date().getTime().toString();
+    const orderId = orderLen+new Date().getTime().toString()+(Math.random()*10000).toFixed(0);
 
-    payload.orderId = orderId+len;//模拟自增id
-    payload.userId = userId;//用户id
+    // payload.orderId = orderId+len+Math.random(10).toFixed(5);//模拟自增id
+    // payload.userId = userId;//用户id
+    // payload.userName = userName;
+    Object.assign(payload,{orderId,userId,userName});
     console.log(payload,'组织');
     return await ctx.model.Order.create(payload);
   }
