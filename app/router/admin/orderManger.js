@@ -5,9 +5,10 @@ module.exports = app=>{
 
   const {admin} = controller;
 
-  const orderRouter = router.namespace('/api');
+  const orderRouter = router.namespace('/api/admin');
 
-  orderRouter.get('/admin/order',admin.orderManger.getOrder);//获取订单
-
+  orderRouter.get('/order',jwt,admin.orderManger.getOrder);//获取订单
+  orderRouter.get('/deleteOrder',jwt,admin.orderManger.deleteOrder);//删除订单
+  
 
 };

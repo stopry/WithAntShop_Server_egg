@@ -10,12 +10,13 @@ class OrderMangerController extends  Controller{
   //获取订单
   async getOrder(){
     const {ctx,service} = this;
-    // const orderStatus = ctx.query.orderStatus;
-    // let token = ctx.request.get('Authorization');
-    // const res = await service.order.getOrder({token,orderStatus});
-    const res = await service.admin.orderManger.getOrder();
+    ctx.query.pageNum = Number(ctx.query.pageNum);
+    ctx.query.pageSize = Number(ctx.query.pageSize);
+    const {orderStatus,pageNum,pageSize} = ctx.query;
+    let token = ctx.request.get('Authorization');
+    const res = await service.admin.orderManger.getOrder({orderStatus,pageNum,pageSize,token});
+    // const res = await service.admin.orderManger.getOrder();
 
-  //  ctx.body = '444';
     ctx.helper.success({ctx,res})
   }
 }

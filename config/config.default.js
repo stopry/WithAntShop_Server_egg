@@ -82,10 +82,16 @@ module.exports = appInfo => {
     secret: process.env.EGG_ALINODE_SECRET || '',
   };
 
+  //数据分页默认配置
+  config.pageSize=10;
+  config.pageNum = 1;
+  config.skip = 10;
+  
   // add your user config here
   const userConfig = {
     myAppName: 'SPORTS',
   };
+
 
   return {
     ...config,
