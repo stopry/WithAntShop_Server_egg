@@ -19,5 +19,32 @@ class OrderMangerController extends  Controller{
 
     ctx.helper.success({ctx,res})
   }
+  //删除订单
+  async deleteOrder(){
+    const {ctx,service} = this;
+    const {_id} = ctx.query;
+    const res = await service.admin.orderManger.deleteOrder({_id});
+    if(res){
+      ctx.helper.success({ctx,res});
+    }else{
+      ctx.throw('删除失败')
+    }
+  }
+  //更新订单
+  async updateOrder(){
+    const {ctx,service} = this;
+    const order = ctx.request.body;
+    const res = await service.admin.orderManger.updateOrder(order);
+    res?ctx.helper.success({ctx,res}):ctx.throw('更新失败');
+  }
+
+  //添加订单
+  async addOrder(){
+    const {ctx,service} = this;
+    const order = ctx.request.body;
+    const res = await service.admin.orderManger.addOrder(order);
+    res?ctx.helper.success({ctx,res}):ctx.throw('添加失败');
+  }
+
 }
 module.exports = OrderMangerController;

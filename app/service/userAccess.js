@@ -15,3 +15,4 @@ class UserAccessService extends Service{
     return {token:await service.actionToken.applay(user._id)}
   }
 }
+module.exports = UserAccessService;

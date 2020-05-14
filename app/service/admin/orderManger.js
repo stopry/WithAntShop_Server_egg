@@ -45,8 +45,6 @@ class OrderService extends Service{
         ctx.throw('查询失败');
       }
     });
-    console.log(list,'查询出的数据');
-
     const res = {list,pageNum,pages,amount,pageSize};
 
     return res;
@@ -65,7 +63,40 @@ class OrderService extends Service{
     }) 
     return res;
   }
+  //更新订单
+  async updateOrder(payload){
+    const {ctx} = this;
+    const {_id} = payload;
+    let res = false;
 
+    let pro = new Promise((resolve,reject)=>{
+      ctx.model.Order.where({ _id }).update(payload,(error,result)=>{
+        if(error){
+          res = false;
+          reject(res);
+        }else{
+          res = result;
+          resolve(res)
+        }
+      });
+    })
+    
+    return pro;
+  }
+  //添加订单
+  async addOrder(payload){
+    const {ctx} = this;
+    const {_id} = payload;
+    let res = false;
+    await ctx.model.Order.create(payload,(error,result)=>{
+      if(error){
+        res = false;
+      }else{
+        res = result;
+      }
+    })
+    return res;
+  }
 }
 
 module.exports = OrderService;
