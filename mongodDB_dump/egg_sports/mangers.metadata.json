@@ -1,0 +1,1 @@
+{"options":{},"indexes":[{"v":{"$numberInt":"2"},"key":{"_id":{"$numberInt":"1"}},"name":"_id_","ns":"egg_sports.mangers"}],"uuid":"bad53c7d7a914b60bab78f79980d74a2"}

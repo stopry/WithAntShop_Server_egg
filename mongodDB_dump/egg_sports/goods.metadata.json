@@ -1,0 +1,1 @@
+{"options":{},"indexes":[{"v":{"$numberInt":"2"},"key":{"_id":{"$numberInt":"1"}},"name":"_id_","ns":"egg_sports.goods"}],"uuid":"da7cccb76e8c4be290fb242b019f09b2"}
