@@ -8,6 +8,7 @@ module.exports = app=>{
       unique:true,
       required:true
     },
+    title:{type:String,required:true},
     des:{type:String},
     recommend:{type:Boolean},
     img:{type:String},
